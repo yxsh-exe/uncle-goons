@@ -1,0 +1,21 @@
+---
+import { marqueeItems } from '../data/site';
+
+// Rendered twice so the -50% translate loops seamlessly.
+const loop = [...marqueeItems, ...marqueeItems];
+---
+
+<div class="overflow-hidden bg-brand-red text-white" aria-label={marqueeItems.join(', ')}>
+	<div class="checker h-4"></div>
+	<div class="flex w-max animate-marquee py-5" aria-hidden="true">
+		{
+			loop.map((item) => (
+				<span class="flex items-center gap-10 pr-10 font-display text-3xl font-bold whitespace-nowrap uppercase sm:text-4xl">
+					{item}
+					<span class="size-2.5 rounded-full bg-white/70" />
+				</span>
+			))
+		}
+	</div>
+	<div class="checker h-4"></div>
+</div>

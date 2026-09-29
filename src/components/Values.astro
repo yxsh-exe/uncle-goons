@@ -1,0 +1,29 @@
+---
+import { values } from '../data/site';
+
+const icons = {
+	leaf: 'M5 21c0-9 6-15 16-16-1 10-7 16-16 16Zm0 0 8-8',
+	oven: 'M4 5h16v14H4zM4 9h16M8 7h.01M12 7h.01M8 13h8v3H8z',
+	star: 'm12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9L12 3Z',
+};
+---
+
+<section class="border-t border-navy/10">
+	<ul class="mx-auto grid max-w-5xl gap-8 px-4 py-12 sm:grid-cols-3 sm:px-8">
+		{
+			values.map((v) => (
+				<li data-reveal class="flex items-center gap-4">
+					<span class="grid size-12 shrink-0 place-items-center rounded-full bg-brand-red text-white">
+						<svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+							<path d={icons[v.icon]} />
+						</svg>
+					</span>
+					<span>
+						<span class="block font-display text-lg font-bold text-navy uppercase">{v.title}</span>
+						<span class="block text-xs text-ink/60">{v.body}</span>
+					</span>
+				</li>
+			))
+		}
+	</ul>
+</section>

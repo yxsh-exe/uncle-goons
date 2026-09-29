@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+// Stand-in for a photo: a colored block with a label. Swap for <img> once real photos exist.
+interface Props extends HTMLAttributes<'div'> {
+	label: string;
+	color: string;
+}
+
+const { label, color, class: className = '', ...rest } = Astro.props;
+---
+
+<div
+	{...rest}
+	role="img"
+	aria-label={label}
+	class:list={['relative flex items-end overflow-hidden rounded-2xl', className]}
+	style={`background-color:${color};background-image:linear-gradient(135deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 55%,rgba(0,0,0,.18) 100%)`}
+>
+	<span class="m-3 truncate rounded-full bg-black/25 px-3 py-1 text-[10px] font-semibold tracking-widest text-white/90 uppercase backdrop-blur-sm">
+		{label}
+	</span>
+</div>

@@ -1,0 +1,35 @@
+---
+import Photo from './Photo.astro';
+import { outletPhotos } from '../data/site';
+---
+
+<section id="outlets" class="mx-auto max-w-7xl px-4 pb-16 sm:px-8 md:pb-24">
+	<div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+		<div data-reveal class="max-w-sm">
+			<h2 class="font-display text-4xl font-bold text-navy uppercase sm:text-5xl">Find your soul</h2>
+			<p class="mt-4 text-sm leading-relaxed text-ink/75">
+				From a school canteen tray to neighbourhood bakeries, there’s an Uncle’s round the corner. Walk in for a warm
+				brownie, stay for the combo.
+			</p>
+			<a
+				href="#outlets"
+				class="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-red px-6 py-3 text-xs font-semibold tracking-widest text-white uppercase transition-colors hover:bg-brand-red-dark"
+			>
+				Locate an outlet <span aria-hidden="true">→</span>
+			</a>
+		</div>
+
+		<div data-reveal class="text-right">
+			<p class="font-display text-[clamp(5rem,14vw,10rem)] leading-[0.85] font-bold text-brand-red">
+				<span data-count="35">35</span>+
+			</p>
+			<p class="mt-2 font-display text-xl font-semibold tracking-[0.2em] text-navy uppercase sm:text-2xl">
+				Outlets &amp; counting
+			</p>
+		</div>
+	</div>
+
+	<div class="mt-10 grid auto-rows-[200px] gap-4 sm:grid-cols-2 md:auto-rows-[240px] md:grid-cols-3">
+		{outletPhotos.map((p) => <Photo data-reveal label={p.label} color={p.color} class={`h-full ${p.span}`} />)}
+	</div>
+</section>

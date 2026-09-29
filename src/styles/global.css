@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+	--color-cream: #fff6e8;
+	--color-blush: #fdebe6;
+	--color-brand-red: #e3262f;
+	--color-brand-red-dark: #c01b24;
+	--color-navy: #1e4079;
+	--color-navy-dark: #152e59;
+	--color-ink: #1f1f24;
+
+	--font-display: "Oswald", "Anton", "Impact", sans-serif;
+	--font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+@utility checker {
+	background-image: repeating-conic-gradient(var(--color-navy) 0 25%, #fff 0 50%);
+	background-size: 16px 16px;
+}
+
+@utility checker-sm {
+	background-image: repeating-conic-gradient(var(--color-navy) 0 25%, #fff 0 50%);
+	background-size: 10px 10px;
+}
+
+@keyframes marquee {
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+@utility animate-marquee {
+	animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.animate-marquee {
+		animation: none;
+	}
+}

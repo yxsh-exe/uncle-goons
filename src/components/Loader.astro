@@ -1,0 +1,33 @@
+---
+import { logoPath } from '../assets/logo';
+
+// A fat ribbon snaking across the screen in three passes, drawn in a 1000×1000 space and
+// stretched to the viewport by the script. At stroke-width 520 the passes overlap, so while
+// fully drawn it covers the screen the same as the solid red.
+const snake =
+	'M -300 170 C 300 40, 700 300, 1300 170 C 1520 170, 1520 500, 1300 500 C 700 380, 300 620, -300 500 C -520 500, -520 830, -300 830 C 300 700, 700 960, 1300 830';
+---
+
+<div id="loader" data-loader class="fixed inset-0 z-100 bg-brand-red" aria-hidden="true">
+	<svg data-loader-svg class="absolute inset-0 size-full overflow-visible">
+		<defs>
+			<!-- The same ribbon as a mask, so the logo is peeled away along with it. -->
+			<mask id="loader-peel" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+				<g data-loader-stretch>
+					<path data-loader-snake d={snake} fill="none" stroke="white" stroke-width="520" stroke-linecap="round"></path>
+				</g>
+			</mask>
+		</defs>
+		<g data-loader-stretch>
+			<path data-loader-snake d={snake} fill="none" class="stroke-brand-red" stroke-width="520" stroke-linecap="round"></path>
+		</g>
+		<g mask="url(#loader-peel)">
+			<g data-loader-logo opacity="0">
+				<svg data-loader-mark viewBox="130 115 830 860" width="0" height="0">
+					<path fill="white" fill-rule="evenodd" d={logoPath}></path>
+				</svg>
+			</g>
+		</g>
+	</svg>
+</div>
+<noscript><style>[data-loader]{display:none}</style></noscript>

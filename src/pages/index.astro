@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Loader from '../components/Loader.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Story from '../components/Story.astro';
+import Marquee from '../components/Marquee.astro';
+import Menu from '../components/Menu.astro';
+import Testimonial from '../components/Testimonial.astro';
+import Outlets from '../components/Outlets.astro';
+import Values from '../components/Values.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+	<Loader />
+	<Header />
+	<main>
+		<Hero />
+		<Story />
+		<Marquee />
+		<Menu />
+		<Testimonial />
+		<Outlets />
+		<Values />
+	</main>
+	<Footer />
+</Layout>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
+
+	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const loader = document.querySelector<HTMLElement>('[data-loader]');
+	const root = document.documentElement;
+
+	function startReveals() {
+		ScrollTrigger.batch('[data-reveal]', {
+			start: 'top 88%',
+			once: true,
+			onEnter: (els) =>
+				gsap.fromTo(els, { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.1 }),
+		});
+
+		const counter = document.querySelector<HTMLElement>('[data-count]');
+		if (counter) {
+			const state = { n: 0 };
+			gsap.to(state, {
+				n: Number(counter.dataset.count),
+				duration: 1.6,
+				ease: 'power2.out',
+				scrollTrigger: { trigger: counter, start: 'top 85%', once: true },
+				onUpdate: () => (counter.textContent = String(Math.round(state.n))),
+			});
+		}
+	}
+
+	const finishLoader = () => {
+		loader?.remove();
+		root.style.overflow = '';
+	};
+
+	if (reduceMotion) {
+		gsap.to(loader, { opacity: 0, duration: 0.4, delay: 0.3, onComplete: finishLoader });
+	} else {
+		gsap.set('[data-reveal]', { opacity: 0 });
+		root.style.overflow = 'hidden';
+
+		// Stretch the 1000×1000 ribbon to the viewport and centre the logo at a fixed pixel size,
+		// so the ribbon covers the screen but the logo keeps its proportions.
+		const svg = document.querySelector<SVGSVGElement>('[data-loader-svg]');
+		const mark = document.querySelector<SVGSVGElement>('[data-loader-mark]');
+		const layout = () => {
+			const w = window.innerWidth;
+			const h = window.innerHeight;
+			const size = w < 640 ? 112 : 144;
+			svg?.setAttribute('viewBox', `0 0 ${w} ${h}`);
+			document
+				.querySelectorAll('[data-loader-stretch]')
+				.forEach((g) => g.setAttribute('transform', `scale(${w / 1000} ${h / 1000})`));
+			mark?.setAttribute('x', String((w - size) / 2));
+			mark?.setAttribute('y', String((h - size) / 2));
+			mark?.setAttribute('width', String(size));
+			mark?.setAttribute('height', String(size));
+		};
+		layout();
+		window.addEventListener('resize', layout);
+
+		gsap
+			.timeline({ onComplete: () => (window.removeEventListener('resize', layout), finishLoader()) })
+			.fromTo(
+				'[data-loader-logo]',
+				{ scale: 0.6, opacity: 0, transformOrigin: '50% 50%' },
+				{ scale: 1, opacity: 1, duration: 0.45, ease: 'back.out(1.8)' },
+			)
+			// Hand off from the solid fill to the ribbon, which covers the same area, then peel it
+			// back from its bottom-right end toward the top-left, taking the logo with it.
+			.set(loader, { backgroundColor: 'transparent' }, '+=0.35')
+			.add(startReveals, '+=0.1')
+			.to('[data-loader-snake]', { drawSVG: '0% 0%', duration: 1.2, ease: 'power2.inOut' }, '<');
+	}
+</script>

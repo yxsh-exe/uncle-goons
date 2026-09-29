@@ -1,0 +1,29 @@
+---
+import Photo from './Photo.astro';
+import { timeline } from '../data/site';
+---
+
+<section id="story" class="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-8 md:grid-cols-[auto_1fr] md:py-24">
+	<div
+		data-reveal
+		class="mx-auto grid size-44 place-items-center rounded-full bg-brand-red text-center text-white shadow-lg ring-8 ring-brand-red/15 sm:size-52"
+	>
+		<div>
+			<p class="font-display text-7xl leading-none font-bold">25+</p>
+			<p class="mt-1 text-[10px] leading-snug font-semibold tracking-[0.2em] uppercase">Years of<br />baking smiles</p>
+		</div>
+	</div>
+
+	<ol class="grid gap-8 sm:grid-cols-3">
+		{
+			timeline.map((t) => (
+				<li data-reveal>
+					<Photo label={t.title} color={t.color} class="aspect-[4/3]" />
+					<p class="mt-4 text-[11px] font-semibold tracking-[0.2em] text-brand-red uppercase">{t.year}</p>
+					<h3 class="mt-1 font-display text-xl font-bold text-navy uppercase">{t.title}</h3>
+					<p class="mt-2 text-xs leading-relaxed text-ink/70">{t.body}</p>
+				</li>
+			))
+		}
+	</ol>
+</section>

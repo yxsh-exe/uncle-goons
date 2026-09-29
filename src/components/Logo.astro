@@ -1,0 +1,24 @@
+---
+import { logoPath } from '../assets/logo';
+
+interface Props {
+	/** Sizing classes, e.g. "size-12". */
+	class?: string;
+	/** Sit the mark on a navy disc so the cut-outs read navy on any background. */
+	badge?: boolean;
+}
+
+const { class: className = 'size-12', badge = false } = Astro.props;
+---
+
+<span
+	class:list={[
+		'grid shrink-0 place-items-center',
+		badge && 'rounded-full bg-navy p-[8%] shadow-md ring-2 ring-white',
+		className,
+	]}
+>
+	<svg viewBox="130 115 830 860" class="size-full text-white" role="img" aria-label="Uncle Goons">
+		<path fill="currentColor" fill-rule="evenodd" d={logoPath}></path>
+	</svg>
+</span>
