@@ -143,10 +143,21 @@ export const outletPhotos = [
 	{ label: 'Inside the bakery', color: '#b58a62', span: '' },
 ];
 
-export const values = [
-	{ title: '100% Eggless', body: 'Every brownie, every bake', icon: 'leaf' },
-	{ title: 'Baked Fresh Daily', body: 'Small batches every morning', icon: 'oven' },
-	{ title: 'Since 1999', body: '25+ years of fudge', icon: 'star' },
-] as const;
-
-export const footerLinks = ['Menu', 'Outlets', 'Franchise', 'Careers', 'Contact'];
+export const footerGroups: { title: string; links: { label: string; href: string; id?: string }[] }[] = [
+	{
+		title: 'Explore',
+		links: [
+			{ label: 'Menu', href: '#menu' },
+			{ label: 'Outlets', href: '#outlets' },
+			{ label: 'Our Story', href: '#story' },
+		],
+	},
+	{
+		title: 'Company',
+		links: [
+			{ label: 'Franchise', href: '#franchise', id: 'franchise' },
+			{ label: 'Careers', href: '#contact' },
+			{ label: 'Contact', href: '#contact' },
+		],
+	},
+];

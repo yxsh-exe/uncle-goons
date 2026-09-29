@@ -16,6 +16,12 @@
 @layer base {
 	html {
 		scroll-behavior: smooth;
+		/* Page still scrolls; only the bar is hidden. */
+		scrollbar-width: none;
+	}
+
+	html::-webkit-scrollbar {
+		display: none;
 	}
 }
 

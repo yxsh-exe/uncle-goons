@@ -1,0 +1,44 @@
+---
+import { logoPath } from '../assets/logo';
+
+interface Props {
+	class?: string;
+	/** Fill the ring navy so the face reads on non-navy backgrounds (e.g. the red navbar). */
+	badge?: boolean;
+}
+
+const { class: className = 'w-56', badge = false } = Astro.props;
+
+// Badge centred at (150,110); the wordmark's baseline runs along a concentric arc below it,
+// from 145° round the bottom to 35°, so the letters lean in toward the face.
+const cx = 150;
+const cy = 110;
+const r = 142;
+const at = (deg: number) => {
+	const a = (deg * Math.PI) / 180;
+	return `${(cx + r * Math.cos(a)).toFixed(2)} ${(cy + r * Math.sin(a)).toFixed(2)}`;
+};
+// Unique per instance, since the lockup appears in both the navbar and the footer.
+const arcId = `lockup-arc-${Math.random().toString(36).slice(2, 8)}`;
+const arc = `M ${at(150)} A ${r} ${r} 0 0 0 ${at(30)}`;
+---
+
+<svg viewBox="0 0 300 280" class:list={['text-white', className]} role="img" aria-label="Uncle Goons">
+	<defs>
+		<path id={arcId} d={arc}></path>
+	</defs>
+	<circle cx={cx} cy={cy} r="96" class={badge ? 'fill-navy' : 'fill-none'} stroke="currentColor" stroke-width="5"></circle>
+	<svg x={cx - 74} y={cy - 76} width="148" height="152" viewBox="130 115 830 860">
+		<path fill="currentColor" fill-rule="evenodd" d={logoPath}></path>
+	</svg>
+	<text
+		fill="currentColor"
+		font-family="Oswald, sans-serif"
+		font-weight="700"
+		font-size="40"
+		letter-spacing="3"
+		text-anchor="middle"
+	>
+		<textPath href={`#${arcId}`} startOffset="50%">UNCLE GOONS</textPath>
+	</text>
+</svg>
