@@ -14,6 +14,7 @@ import { menu } from '../data/site';
 						<Photo
 							label={cat.title}
 							color={cat.color}
+							src={cat.image}
 							class={`aspect-[4/3] rounded-3xl! shadow-lg ${i % 2 === 0 ? 'md:order-last' : ''}`}
 						/>
 						<div>
@@ -29,7 +30,7 @@ import { menu } from '../data/site';
 							</ul>
 							<a
 								href="#menu"
-								class="mt-5 inline-flex items-center gap-2 rounded-full border-2 border-navy bg-white px-5 py-2 text-[11px] font-bold tracking-widest text-navy uppercase transition-colors hover:bg-navy hover:text-white"
+								class="mt-5 inline-flex items-center gap-2 rounded-full border-2 border-navy bg-white px-5 py-1.5 font-display text-sm font-medium tracking-wider text-navy uppercase transition-colors hover:bg-navy hover:text-white"
 							>
 								See all {cat.total} items <span aria-hidden="true">→</span>
 							</a>

@@ -17,7 +17,7 @@ import { timeline } from '../data/site';
 		{
 			timeline.map((t) => (
 				<li>
-					<Photo label={t.title} color={t.color} class="aspect-[4/3]" />
+					<Photo label={t.title} color={t.color} src={t.src} class="aspect-[4/3]" />
 					<p class="mt-4 text-[11px] font-bold tracking-[0.2em] text-brand-red uppercase">{t.year}</p>
 					<h3 class="mt-1 font-display text-xl font-bold text-navy uppercase">{t.title}</h3>
 					<p class="mt-2 text-xs leading-relaxed text-ink/70">{t.body}</p>

@@ -8,9 +8,9 @@ export const navLinks = [
 ];
 
 export const heroPhotos = [
-	{ label: 'Bakery counter', color: '#8a5a44' },
-	{ label: 'Uncle serving a kid', color: '#b07a52' },
-	{ label: 'Brownie display', color: '#6b3f2e' },
+	{ label: 'Bakery counter', color: '#8a5a44', src: '/Store Interior.jpg' },
+	{ label: 'Uncle serving a kid', color: '#b07a52', src: '/Uncle Serving.jpg' },
+	{ label: 'Brownie display', color: '#6b3f2e', src: '/Counter Close-up.jpg' },
 ];
 
 export const timeline = [
@@ -19,18 +19,21 @@ export const timeline = [
 		title: 'The First Oven',
 		body: 'One home oven, a tray of walnut brownies and a school canteen that sold out by lunch.',
 		color: '#a0684a',
+		src: '/Photo 1-1.jpg',
 	},
 	{
 		year: '2005',
 		title: 'The First Bakery',
 		body: 'Checkerboard floors, a milk shake on the wall and the Nutella brownie that made us famous.',
 		color: '#7c4a36',
+		src: '/Photo 2-1.jpg',
 	},
 	{
 		year: 'Today',
 		title: "Still Uncle's",
 		body: '35+ outlets, same fudgy recipe, same grin. Every bite still tastes like the summer holidays.',
 		color: '#c28a5c',
+		src: '/Photo 1.jpg',
 	},
 ];
 
@@ -40,6 +43,7 @@ export type MenuCategory = {
 	title: string;
 	tagline: string;
 	color: string;
+	image: string;
 	total: number;
 	items: { name: string; price: number }[];
 };
@@ -49,6 +53,7 @@ export const menu: MenuCategory[] = [
 		title: 'Brownie with Ice Cream',
 		tagline: 'Warm fudge brownie, cold scoop, zero regrets.',
 		color: '#8f7fd6',
+		image: '/Image Card-7.jpg',
 		total: 10,
 		items: [
 			{ name: 'Classic Brownie w Ice Cream', price: 200 },
@@ -60,6 +65,7 @@ export const menu: MenuCategory[] = [
 		title: 'Brownies',
 		tagline: 'Dense, fudgy and baked every single morning.',
 		color: '#f0b82e',
+		image: '/Image Card-6.jpg',
 		total: 10,
 		items: [
 			{ name: 'Classic Brownie', price: 140 },
@@ -71,6 +77,7 @@ export const menu: MenuCategory[] = [
 		title: 'Cookies',
 		tagline: 'Crackly edges, gooey middles, big chunks.',
 		color: '#2a9d9a',
+		image: '/Image Card-5.jpg',
 		total: 4,
 		items: [
 			{ name: 'Dark Chocolate & Sea Salt Cookie', price: 120 },
@@ -82,6 +89,7 @@ export const menu: MenuCategory[] = [
 		title: 'Cheesecakes',
 		tagline: 'Baked slow, served cold, gone fast.',
 		color: '#3a8fd6',
+		image: '/Image Card-4.jpg',
 		total: 4,
 		items: [
 			{ name: 'New York Classic Cheesecake', price: 280 },
@@ -93,6 +101,7 @@ export const menu: MenuCategory[] = [
 		title: 'Cookie Crumble Brownie with Ice Cream',
 		tagline: 'Brownie, cookie crumble and a scoop on top.',
 		color: '#d8322f',
+		image: '/Image Card-3.jpg',
 		total: 3,
 		items: [
 			{ name: 'Classic Cookie Crumble Brownie w Ice Cream', price: 240 },
@@ -104,6 +113,7 @@ export const menu: MenuCategory[] = [
 		title: 'Bottled Shakes',
 		tagline: 'Thick, chilled and made to travel.',
 		color: '#2f6fb5',
+		image: '/Image Card-2.jpg',
 		total: 5,
 		items: [
 			{ name: 'Double Chocolate Shake', price: 240 },
@@ -115,6 +125,7 @@ export const menu: MenuCategory[] = [
 		title: 'Cookie Ice Cream Sandwich',
 		tagline: 'Two cookies, one fat scoop in between.',
 		color: '#6b3a24',
+		image: '/Image Card-1.jpg',
 		total: 4,
 		items: [
 			{ name: 'Dark Chocolate & Sea Salt Cookie Sandwich', price: 270 },
@@ -126,6 +137,7 @@ export const menu: MenuCategory[] = [
 		title: 'Cookie Crumble Brownie',
 		tagline: 'The brownie, with a crunchy jacket on.',
 		color: '#ee8fa8',
+		image: '/Image Card.jpg',
 		total: 3,
 		items: [
 			{ name: 'Classic Brownie with Cookie Crumble', price: 160 },
@@ -136,11 +148,10 @@ export const menu: MenuCategory[] = [
 ];
 
 export const outletPhotos = [
-	{ label: 'Outlet at night', color: '#3b2a4a', span: 'md:col-span-2 md:row-span-1' },
-	{ label: 'Friends at a table', color: '#a0684a', span: '' },
-	{ label: 'Brownie sundae', color: '#7c3a2a', span: '' },
-	{ label: 'Evening crowd', color: '#4a4f7a', span: '' },
-	{ label: 'Inside the bakery', color: '#b58a62', span: '' },
+	{ label: 'Outlet at night', color: '#3b2a4a', span: 'md:col-span-2', src: '/Photo 1.jpg' },
+	{ label: 'Friends at a table', color: '#a0684a', span: '', src: '/Photo 2.jpg' },
+	{ label: 'Brownie sundae', color: '#7c3a2a', span: '', src: '/Photo 1-1.jpg' },
+	{ label: 'Inside the bakery', color: '#b58a62', span: 'md:col-span-2', src: '/Photo 2-1.jpg' },
 ];
 
 export const footerGroups: { title: string; links: { label: string; href: string; id?: string }[] }[] = [
